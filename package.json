@@ -1,0 +1,25 @@
+{
+  "name": "openrct2streamintegration",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/oli414/OpenRCT2StreamIntegration.git"
+  },
+  "author": "Oli414",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/oli414/OpenRCT2StreamIntegration/issues"
+  },
+  "homepage": "https://github.com/oli414/OpenRCT2StreamIntegration#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "opn": "^6.0.0",
+    "websocket": "^1.0.32"
+  }
+}

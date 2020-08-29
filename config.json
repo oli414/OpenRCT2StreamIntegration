@@ -1,0 +1,7 @@
+{
+    "key": "value",
+    "twitch": {
+        "clientID": "xijp8ir7bscb5n7sfsuinlzw6c0k86"
+    },
+    "callbackPort": 8080
+}

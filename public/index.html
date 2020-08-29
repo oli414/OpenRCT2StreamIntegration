@@ -1,0 +1,70 @@
+<head>
+    <title>OpenRCT2 Twitch Integration</title>
+    <style>
+        html,
+        body {
+            background: rgb(112, 151, 255);
+            background: linear-gradient(138deg, rgba(112, 151, 255, 1) 0%, rgba(191, 50, 255, 1) 100%);
+
+            margin: 0;
+            padding: 0;
+
+            width: 100vw;
+            height: 100vh;
+
+            box-sizing: border-box;
+        }
+
+        body {
+            padding-top: 45vh;
+            text-align: center;
+        }
+
+        h1 {
+            color: white;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-weight: bold;
+
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.4);
+        }
+
+        p {
+            color: white;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.4);
+        }
+    </style>
+</head>
+
+<body>
+    <h1 id="status">Loading...</h1>
+    <p id="status2">Loading...</p>
+    <script>
+        function getHashParams() {
+            var hashParams = {};
+            var e,
+                a = /\+/g,  // Regex for replacing addition symbol with a space
+                r = /([^&;=]+)=?([^&;]*)/g,
+                d = function (s) { return decodeURIComponent(s.replace(a, " ")); },
+                q = window.location.hash.substring(1);
+
+            while (e = r.exec(q))
+                hashParams[d(e[1])] = d(e[2]);
+
+            return hashParams;
+        }
+
+        var params = getHashParams();
+
+        var xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function () {
+            document.getElementById("status").innerHTML = "Authorized";
+            document.getElementById("status2").innerHTML = "You may close this page";
+        };
+        xhr.open("POST", "http://localhost:8080/access_token", true);
+        xhr.setRequestHeader('Content-Type', 'application/json');
+        xhr.send(JSON.stringify({
+            "access_token": params.access_token
+        }));
+    </script>
+</body>

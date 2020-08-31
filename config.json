@@ -1,7 +1,37 @@
 {
-    "key": "value",
     "twitch": {
-        "clientID": "xijp8ir7bscb5n7sfsuinlzw6c0k86"
+        "botName": "RCT Bot"
     },
-    "callbackPort": 8080
+    "callbackPort": 8080,
+    "interactions": [
+        {
+            "trigger": {
+                "type": "COMMAND",
+                "command": "!setname",
+                "subsOnly": false
+            },
+            "action": "NAME_RIDE"
+        },
+        {
+            "trigger": {
+                "type": "COMMAND",
+                "command": "!setcolor",
+                "subsOnly": false
+            },
+            "action": "REPLACE_RIDE_COLOR"
+        },
+        {
+            "trigger": {
+                "type": "VIEWER_JOINS"
+            },
+            "action": "SPAWN_PEEP"
+        },
+        {
+            "trigger": {
+                "type": "CHANNEL_POINTS_REWARD",
+                "rewardTitle": "Replace Color"
+            },
+            "action": "REPLACE_RIDE_COLOR"
+        }
+    ]
 }

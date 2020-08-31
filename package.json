@@ -20,6 +20,7 @@
   "dependencies": {
     "express": "^4.17.1",
     "opn": "^6.0.0",
+    "tmi.js": "^1.5.0",
     "websocket": "^1.0.32"
   }
 }

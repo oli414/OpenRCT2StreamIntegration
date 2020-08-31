@@ -1,15 +1,17 @@
 const Action = require("./Action");
 
 class SpawnPeep extends Action {
-    constructor() {
-        super();
+    constructor(actionManager) {
+        super(actionManager);
         this.identifier = "SPAWN_PEEP";
     }
 
     trigger(params) {
-        params.username;
-        params.message;
-        params.input;
+        this.actionManager.send({
+            type: this.identifier,
+            username: params.username,
+            message: params.message
+        });
     }
 }
 

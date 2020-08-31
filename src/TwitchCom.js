@@ -5,6 +5,7 @@ const fs = require('fs');
 const path = require('path');
 
 const PubSub = require("./PubSub");
+const TwitchIRC = require("./TwitchIRC");
 
 class TwitchCom {
     constructor(config, app) {
@@ -13,6 +14,7 @@ class TwitchCom {
         this.redirectUri = config.appConfig.redirectUri;
 
         this.channelID = "";
+        this.channelName = "";
 
         this.storedAccessToken = "";
         if (fs.existsSync("access_token.bin")) {
@@ -23,7 +25,6 @@ class TwitchCom {
 
         this.webServerPort = config.callbackPort;
         this.webServer = express();
-        this.webServer.use(express.urlencoded());
         this.webServer.use(express.json());
         this.webServer.get('/', (req, res) => {
             res.sendFile(path.resolve("public/index.html"));
@@ -70,7 +71,7 @@ class TwitchCom {
                     });
                 }
                 else if (res.statusCode >= 200 && res.statusCode < 203) {
-                    console.log("Validated token succesfully!");
+                    console.log("Twitch authentication token has been validated");
                     // All good to go
                     let str = "";
                     res.on('data', function (chunk) {
@@ -78,8 +79,8 @@ class TwitchCom {
                     });
                     res.on('end', function () {
                         let obj = JSON.parse(str);
-                        console.log(obj);
                         that.channelID = obj.user_id;
+                        that.channelName = obj.login;
                         resolve();
                     });
                 }
@@ -102,7 +103,8 @@ class TwitchCom {
                 "bits:read",
                 "channel:read:subscriptions",
                 "channel:read:redemptions",
-                "channel_subscriptions"//,
+                "channel_subscriptions",
+                "chat:read"//,
                 //"channel:moderate"
             ]
             opn("https://id.twitch.tv/oauth2/authorize?client_id=" + encodeURI(this.appClientID) + "&redirect_uri=" + encodeURI(this.redirectUri + ":" + this.webServerPort) + "&response_type=token&scope=" + encodeURI(scope.join(' ')));
@@ -180,7 +182,7 @@ class TwitchCom {
     }
 
     tmiRequest(path) {
-        // /group/user/andrelczyk/chatters
+        // tmi.twitch.tv/group/user/andrelczyk/chatters
         const that = this;
         return new Promise(resolve => {
             const options = {
@@ -234,9 +236,13 @@ class TwitchCom {
     connect() {
         this.authenticate().then(() => {
             console.log("Completed Twitch authentication");
+            this.app.addReadyFlag(1);
 
-            let pubSub = new PubSub(this.config, this.storedAccessToken, this.channelID);
+            let pubSub = new PubSub(this.config, this.storedAccessToken, this.channelID, this);
             pubSub.connect();
+
+            let ircCom = new TwitchIRC(this.config, this.storedAccessToken, this.channelName, this);
+            ircCom.connect();
 
             /*
             this.apiGetRequest("/helix/kraken/channel").then((data) => {

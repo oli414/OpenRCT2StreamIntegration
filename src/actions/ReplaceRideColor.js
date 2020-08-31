@@ -1,8 +1,9 @@
+const Action = require("./Action");
 
-class Action {
+class ReplaceRideColor extends Action {
     constructor(actionManager) {
-        this.actionManager = actionManager;
-        this.identifier = "NONE";
+        super(actionManager);
+        this.identifier = "REPLACE_RIDE_COLOR";
     }
 
     trigger(params) {
@@ -14,4 +15,4 @@ class Action {
     }
 }
 
-module.exports = Action;
+module.exports = ReplaceRideColor;

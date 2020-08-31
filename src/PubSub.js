@@ -2,7 +2,8 @@ const WebSocketClient = require("websocket").client;
 const fs = require("fs");
 
 class PubSub {
-    constructor(config, auth_token, channelID) {
+    constructor(config, auth_token, channelID, twitchCom) {
+        this.twitchCom = twitchCom;
         const that = this;
         this.client = new WebSocketClient();
 
@@ -17,20 +18,24 @@ class PubSub {
 
         this.client.on("connect", (connection) => {
             console.log("Connected to PubSub");
+            that.twitchCom.app.addReadyFlag(4);
 
             connection.on('error', function (error) {
                 console.error("Error in PubSub WebSocket: " + error);
             });
             connection.on('close', function () {
                 console.warn("PubSub WebSocket closed. Attempting reconnect in 10 seconds");
+                that.twitchCom.app.removeReadyFlag(4);
 
                 setTimeout(() => {
                     that.connect();
                 }, 10000);
             });
             connection.on('message', function (message) {
+                /*
                 console.log("PubSub message received:");
                 console.log(JSON.parse(message.utf8Data));
+                */
                 const resData = JSON.parse(message.utf8Data);
 
                 that.lastResponse = new Date().getTime();
@@ -94,30 +99,64 @@ class PubSub {
                         }
                     }*/
 
-
                     /*
+                    {
+                        "benefit_end_month": 0,
+                        "user_name": "oli414_",
+                        "display_name": "Oli414_",
+                        "channel_name": "andrelczyk",
+                        "user_id": "50702969",
+                        "channel_id": "43159180",
+                        "time": "2020-08-29T18:14:03.725340209Z",
+                        "sub_message": {
+                            "message": "",
+                            "emotes": null
+                        },
+                        "sub_plan": "Prime",
+                        "sub_plan_name": "Channel Subscription (andrelczyk)",
+                        "months": 0,
+                        "cumulative_months": 1,
+                        "context": "sub",
+                        "is_gift": false,
+                        "multi_month_duration": 0
+                    }*/
+
                     if (topic == "channel-points-channel-v1." + that.channelID) {
                         if (topicData.data.redemption.status == "FULFILLED") {
                             let title = topicData.data.redemption.reward.title;
                             let user_input = topicData.data.redemption.user_input;
                             let username = topicData.data.redemption.user.display_name;
-                            console.log(title, user_input, username)
-                            if (title == "Name a ride") {
 
-                            }
+                            that.twitchCom.app.triggerManager.trigger("CHANNEL_POINTS_REWARD", {
+                                rewardTitle: title,
+                                message: user_input,
+                                username: username,
+                                subscriber: topicData.data.redemption.reward.is_sub_only
+                            });
                         }
                     }
                     else if (topic == "channel-subscribe-events-v1." + this.channelID) {
+                        let user_input = topicData.sub_message.message;
 
+                        let username = topicData.display_name;
+                        let giver = username;
+                        if (topicData.is_gift) {
+                            username = topicData.recipient_display_name;
+                            if (giver == null) {
+                                giver = "anonymous";
+                            }
+                        }
+
+                        that.twitchCom.app.triggerManager.trigger("SUBSCRIPTION", {
+                            giver: giver,
+                            message: user_input,
+                            username: username,
+                            subscriber: true
+                        });
                     }
-                    else if (topic == "chat_moderator_actions." + that.channelID) {
-                        console.log(topicData);
-                    }*/
                 }
             });
 
-            console.log("Subscribing to:");
-            console.log("Bad auth!? " + auth_token);
             connection.sendUTF(JSON.stringify({
                 "type": "LISTEN",
                 "nonce": "orct2-evt",

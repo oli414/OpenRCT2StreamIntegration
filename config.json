@@ -16,7 +16,12 @@
             "trigger": {
                 "type": "COMMAND",
                 "command": "!spawnpeeps",
-                "subsOnly": false
+                "subsOnly": false,
+                "limits": {
+                    "min": 1,
+                    "max": 100,
+                    "default": 100
+                }
             },
             "action": "SPAWN_PEEPS"
         },
@@ -88,7 +93,12 @@
             "trigger": {
                 "type": "COMMAND",
                 "command": "!ducks",
-                "subsOnly": false
+                "subsOnly": false,
+                "limits": {
+                    "min": 1,
+                    "max": 30,
+                    "default": 15
+                }
             },
             "action": "SPAWN_DUCKS"
         },

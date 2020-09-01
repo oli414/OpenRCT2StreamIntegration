@@ -142,7 +142,7 @@ class TwitchCom {
             const req = https.request(options, res => {
                 if (res.statusCode == 401) {
                     // Invalid token
-                    console.log("Failed to access API");
+                    console.log("Failed to access API. Restart the Relay");
 
                     let str = "";
                     res.on('data', function (chunk) {
@@ -150,7 +150,6 @@ class TwitchCom {
                     });
                     res.on('end', function () {
                         let obj = JSON.parse(str);
-                        console.log(obj);
                     });
                     /*
                     this.storedAccessToken = "";

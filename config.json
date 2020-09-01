@@ -15,10 +15,125 @@
         {
             "trigger": {
                 "type": "COMMAND",
+                "command": "!spawnpeeps",
+                "subsOnly": false
+            },
+            "action": "SPAWN_PEEPS"
+        },
+        {
+            "trigger": {
+                "type": "COMMAND",
+                "command": "!explode",
+                "subsOnly": false
+            },
+            "action": "EXPLODE_PEEPS"
+        },
+        {
+            "trigger": {
+                "type": "COMMAND",
+                "command": "!money",
+                "subsOnly": false,
+                "limits": {
+                    "min": -500,
+                    "max": 1000,
+                    "default": 100
+                }
+            },
+            "action": "ADD_MONEY"
+        },
+        {
+            "trigger": {
+                "type": "COMMAND",
+                "command": "!steal",
+                "subsOnly": false,
+                "limits": {
+                    "default": 100
+                }
+            },
+            "action": "REMOVE_MONEY"
+        },
+        {
+            "trigger": {
+                "type": "COMMAND",
+                "command": "!puke",
+                "subsOnly": false
+            },
+            "action": "NAUSEATE_PEEPS"
+        },
+        {
+            "trigger": {
+                "type": "COMMAND",
+                "command": "!heal",
+                "subsOnly": false
+            },
+            "action": "HEAL_PEEPS"
+        },
+        {
+            "trigger": {
+                "type": "COMMAND",
+                "command": "!robinhood",
+                "subsOnly": false
+            },
+            "action": "GIVE_PEEPS_MONEY"
+        },
+        {
+            "trigger": {
+                "type": "COMMAND",
+                "command": "!surge",
+                "subsOnly": false
+            },
+            "action": "REMOVE_ALL_PEEPS"
+        },
+        {
+            "trigger": {
+                "type": "COMMAND",
+                "command": "!ducks",
+                "subsOnly": false
+            },
+            "action": "SPAWN_DUCKS"
+        },
+        {
+            "trigger": {
+                "type": "COMMAND",
+                "command": "!balloons",
+                "subsOnly": false
+            },
+            "action": "GIVE_PEEPS_BALLOONS"
+        },
+        {
+            "trigger": {
+                "type": "COMMAND",
+                "command": "!umbrellas",
+                "subsOnly": false
+            },
+            "action": "GIVE_PEEPS_UMBRELLAS"
+        },
+        {
+            "trigger": {
+                "type": "COMMAND",
+                "command": "!maps",
+                "subsOnly": false
+            },
+            "action": "GIVE_PEEPS_PARK_MAPS"
+        },
+        {
+            "trigger": {
+                "type": "COMMAND",
                 "command": "!setcolor",
                 "subsOnly": false
             },
             "action": "REPLACE_RIDE_COLOR"
+        },
+        {
+            "trigger": {
+                "type": "COMMAND",
+                "command": "!setpinkto",
+                "subsOnly": false
+            },
+            "action": "REPLACE_RIDE_COLOR",
+            "actionParams": {
+                "recolorableColor": "rainbow"
+            }
         },
         {
             "trigger": {
@@ -31,7 +146,21 @@
                 "type": "CHANNEL_POINTS_REWARD",
                 "rewardTitle": "Replace Color"
             },
-            "action": "REPLACE_RIDE_COLOR"
+            "action": "REPLACE_RIDE_COLOR",
+            "actionParams": {
+                "recolorableColor": "dark olive green"
+            }
+        },
+        {
+            "trigger": {
+                "type": "COMMAND",
+                "command": "!rainbow",
+                "subsOnly": false
+            },
+            "action": "REPLACE_RIDE_COLOR",
+            "actionParams": {
+                "message": "rainbow to rainbow"
+            }
         }
     ]
 }

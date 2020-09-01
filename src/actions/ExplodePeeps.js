@@ -1,16 +1,12 @@
 const Action = require("./Action");
 
-class ReplaceRideColor extends Action {
+class ExplodePeeps extends Action {
     constructor(actionManager) {
         super(actionManager);
-        this.identifier = "REPLACE_RIDE_COLOR";
+        this.identifier = "EXPLODE_PEEPS";
     }
 
     trigger(params) {
-        if (params.recolorableColor) {
-            params.message = params.recolorableColor + " to " + params.message;
-        }
-
         this.actionManager.send({
             type: this.identifier,
             username: params.username,
@@ -19,4 +15,4 @@ class ReplaceRideColor extends Action {
     }
 }
 
-module.exports = ReplaceRideColor;
+module.exports = ExplodePeeps;

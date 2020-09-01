@@ -1,3 +1,4 @@
+const DefaultAction = require("./actions/Action");
 const NameRide = require("./actions/NameRide");
 const SpawnPeep = require("./actions/SpawnPeep");
 const ReplaceRideColor = require("./actions/ReplaceRideColor");
@@ -14,6 +15,18 @@ class ActionManager {
         this.registerAction(NameRide);
         this.registerAction(SpawnPeep);
         this.registerAction(ReplaceRideColor);
+        this.registerAction(DefaultAction, "EXPLODE_PEEPS");
+        this.registerAction(DefaultAction, "GIVE_PEEPS_PARK_MAPS");
+        this.registerAction(DefaultAction, "GIVE_PEEPS_BALLOONS");
+        this.registerAction(DefaultAction, "GIVE_PEEPS_UMBRELLAS");
+        this.registerAction(DefaultAction, "GIVE_PEEPS_MONEY");
+        this.registerAction(DefaultAction, "ADD_MONEY");
+        this.registerAction(DefaultAction, "REMOVE_MONEY");
+        this.registerAction(DefaultAction, "SPAWN_DUCKS");
+        this.registerAction(DefaultAction, "SPAWN_PEEPS");
+        this.registerAction(DefaultAction, "REMOVE_ALL_PEEPS");
+        this.registerAction(DefaultAction, "NAUSEATE_PEEPS");
+        this.registerAction(DefaultAction, "HEAL_PEEPS");
 
         this.tcpServer = new Net.Server();
         this.activeSocket = null;
@@ -40,8 +53,15 @@ class ActionManager {
         }
     }
 
-    registerAction(type) {
+    registerAction(type, identifier = null) {
         let newAction = new type(this);
+
+        if (identifier == null) {
+            identifier = newAction.identifier;
+        }
+        else {
+            newAction.identifier = identifier;
+        }
         this.actions[newAction.identifier] = newAction;
     }
 

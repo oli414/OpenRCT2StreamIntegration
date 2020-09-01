@@ -25,9 +25,6 @@ class TwitchIRC {
 
         this.client.on('message', (target, context, msg, self) => {
             if (self) return;
-            console.log(context.subscriber);
-            console.log(context["display-name"]);
-            console.log("Received IRC message: " + msg);
 
             that.twitchCom.app.triggerManager.trigger("COMMAND", {
                 message: msg,
@@ -37,9 +34,6 @@ class TwitchIRC {
         });
 
         this.client.on("join", (channel, username, self) => {
-            console.log(username + " joined the chat");
-            // Do your stuff.
-
             that.twitchCom.apiGetRequest("/helix/users?login=" + username).then((data) => {
                 that.twitchCom.app.triggerManager.trigger("VIEWER_JOINS", {
                     message: "",

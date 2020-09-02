@@ -8,7 +8,7 @@ OpenRCT2 plugins cannot communicate with Twitch directly, this project is the re
 ## Installation
 - [Download this project](https://github.com/oli414/OpenRCT2StreamIntegration/archive/master.zip) and unzip it where you like
 - Run `install.bat` (On Windows), or: Navigate a command prompt to the project folder and run `npm install`
-- (optional) Open `Config.json` with a text/code editor to customize how viewers can interact with your game 
+- (optional) Open `Config.json` with a text/code editor to customize how viewers can interact with your game. Visit [the wiki](https://github.com/oli414/OpenRCT2StreamIntegration/wiki) for more information
 
 - Install the OpenRCT2 Stream Integration Plugin ([installation steps here](https://github.com/oli414/StreamIntegrationPlugin))
 

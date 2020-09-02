@@ -32,10 +32,9 @@ class PubSub {
                 }, 10000);
             });
             connection.on('message', function (message) {
-                /*
-                console.log("PubSub message received:");
-                console.log(JSON.parse(message.utf8Data));
-                */
+                //console.log("PubSub message received:");
+                //console.log(JSON.parse(message.utf8Data));
+
                 const resData = JSON.parse(message.utf8Data);
 
                 that.lastResponse = new Date().getTime();
@@ -58,46 +57,57 @@ class PubSub {
                     topicData = {
                         "type": "reward-redeemed",
                         "data": {
-                            "timestamp": "2019-11-12T01:29:34.98329743Z",
+                            "timestamp": "2020-08-29T17:37:55.64004148Z",
                             "redemption": {
-                                "id": "9203c6f0-51b6-4d1d-a9ae-8eafdb0d6d47",
+                                "id": "2164eab1-8a4b-4eb7-9cf3-481a8fe39c10",
                                 "user": {
-                                    "id": "30515034",
-                                    "login": "davethecust",
-                                    "display_name": "davethecust"
+                                    "id": "50702969",
+                                    "login": "oli414_",
+                                    "display_name": "Oli414_"
                                 },
-                                "channel_id": "30515034",
-                                "redeemed_at": "2019-12-11T18:52:53.128421623Z",
+                                "channel_id": "43159180",
+                                "redeemed_at": "2020-08-29T17:37:55.64004148Z",
                                 "reward": {
-                                    "id": "6ef17bb2-e5ae-432e-8b3f-5ac4dd774668",
-                                    "channel_id": "30515034",
-                                    "title": "hit a gleesh walk on stream",
-                                    "prompt": "cleanside's finest \n",
-                                    "cost": 10,
+                                    "id": "81c2fdf9-5eac-4be1-87ba-06b57dd3bc6e",
+                                    "channel_id": "43159180",
+                                    "title": "Test Reward",
+                                    "prompt": "This is just a test for future features!",
+                                    "cost": 20,
                                     "is_user_input_required": true,
                                     "is_sub_only": false,
-                                    "image": {
-                                        "url_1x": "https://static-cdn.jtvnw.net/custom-reward-images/30515034/6ef17bb2-e5ae-432e-8b3f-5ac4dd774668/7bcd9ca8-da17-42c9-800a-2f08832e5d4b/custom-1.png",
-                                        "url_2x": "https://static-cdn.jtvnw.net/custom-reward-images/30515034/6ef17bb2-e5ae-432e-8b3f-5ac4dd774668/7bcd9ca8-da17-42c9-800a-2f08832e5d4b/custom-2.png",
-                                        "url_4x": "https://static-cdn.jtvnw.net/custom-reward-images/30515034/6ef17bb2-e5ae-432e-8b3f-5ac4dd774668/7bcd9ca8-da17-42c9-800a-2f08832e5d4b/custom-4.png"
-                                    },
+                                    "image": null,
                                     "default_image": {
                                         "url_1x": "https://static-cdn.jtvnw.net/custom-reward-images/default-1.png",
                                         "url_2x": "https://static-cdn.jtvnw.net/custom-reward-images/default-2.png",
                                         "url_4x": "https://static-cdn.jtvnw.net/custom-reward-images/default-4.png"
                                     },
-                                    "background_color": "#00C7AC",
+                                    "background_color": "#545CC0",
                                     "is_enabled": true,
                                     "is_paused": false,
                                     "is_in_stock": true,
-                                    "max_per_stream": { "is_enabled": false, "max_per_stream": 0 },
-                                    "should_redemptions_skip_request_queue": true
+                                    "max_per_stream": {
+                                        "is_enabled": false,
+                                        "max_per_stream": 0
+                                    },
+                                    "should_redemptions_skip_request_queue": true,
+                                    "template_id": null,
+                                    "updated_for_indicator_at": "2020-08-29T17:37:19.518551112Z",
+                                    "max_per_user_per_stream": {
+                                        "is_enabled": false,
+                                        "max_per_user_per_stream": 0
+                                    },
+                                    "global_cooldown": {
+                                        "is_enabled": false,
+                                        "global_cooldown_seconds": 0
+                                    },
+                                    "redemptions_redeemed_current_stream": 0,
+                                    "cooldown_expires_at": null
                                 },
-                                "user_input": "yeooo",
+                                "user_input": "Hello World 123 test!",
                                 "status": "FULFILLED"
                             }
                         }
-                    }*/
+                    */
 
                     /*
                     {
@@ -122,18 +132,16 @@ class PubSub {
                     }*/
 
                     if (topic == "channel-points-channel-v1." + that.channelID) {
-                        if (topicData.data.redemption.status == "FULFILLED") {
-                            let title = topicData.data.redemption.reward.title;
-                            let user_input = topicData.data.redemption.user_input;
-                            let username = topicData.data.redemption.user.display_name;
+                        let title = topicData.data.redemption.reward.title;
+                        let user_input = topicData.data.redemption.user_input;
+                        let username = topicData.data.redemption.user.display_name;
 
-                            that.twitchCom.app.triggerManager.trigger("CHANNEL_POINTS_REWARD", {
-                                rewardTitle: title,
-                                message: user_input,
-                                username: username,
-                                subscriber: topicData.data.redemption.reward.is_sub_only
-                            });
-                        }
+                        that.twitchCom.app.triggerManager.trigger("CHANNEL_POINTS_REWARD", {
+                            rewardTitle: title,
+                            message: user_input,
+                            username: username,
+                            subscriber: topicData.data.redemption.reward.is_sub_only
+                        });
                     }
                     else if (topic == "channel-subscribe-events-v1." + this.channelID) {
                         let user_input = topicData.sub_message.message;

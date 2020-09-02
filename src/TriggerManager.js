@@ -59,7 +59,8 @@ class TriggerManager {
 
             if (interaction.trigger.type == type) {
                 if (type == "COMMAND") {
-                    if (params.message.startsWith(interaction.trigger.command)) {
+                    let firstPart = params.message.split(" ")[0];
+                    if (firstPart.toLowerCase() == interaction.trigger.command.toLowerCase()) {
                         let strippedMessage = params.message.substring(interaction.trigger.command.length);
                         params.message = strippedMessage.trim();
                         let newParams = applyLimits();
@@ -68,9 +69,11 @@ class TriggerManager {
                     }
                 }
                 else if (type == "CHANNEL_POINTS_REWARD") {
-                    let newParams = applyLimits();
-                    newParams = appendActionParams(newParams);
-                    this.actionManager.trigger(interaction.action, newParams);
+                    if (params.rewardTitle.toLowerCase().trim() == interaction.trigger.rewardTitle.toLowerCase()) {
+                        let newParams = applyLimits();
+                        newParams = appendActionParams(newParams);
+                        this.actionManager.trigger(interaction.action, newParams);
+                    }
                 }
                 else if (type == "SUBSCRIPTION") {
                     let newParams = applyLimits();

@@ -6,17 +6,22 @@
     "interactions": [
         {
             "trigger": {
-                "type": "COMMAND",
-                "command": "!setname",
-                "subsOnly": false
+                "type": "CHANNEL_POINTS_REWARD",
+                "rewardTitle": "Name the Park"
+            },
+            "action": "SET_PARK_NAME"
+        },
+        {
+            "trigger": {
+                "type": "CHANNEL_POINTS_REWARD",
+                "rewardTitle": "Name a Ride"
             },
             "action": "NAME_RIDE"
         },
         {
             "trigger": {
-                "type": "COMMAND",
-                "command": "!spawnpeeps",
-                "subsOnly": false,
+                "type": "CHANNEL_POINTS_REWARD",
+                "rewardTitle": "Spawn Peeps",
                 "limits": {
                     "min": 1,
                     "max": 100,
@@ -27,123 +32,147 @@
         },
         {
             "trigger": {
-                "type": "COMMAND",
-                "command": "!explode",
-                "subsOnly": false
+                "type": "CHANNEL_POINTS_REWARD",
+                "rewardTitle": "Thanos"
             },
             "action": "EXPLODE_PEEPS"
         },
         {
             "trigger": {
-                "type": "COMMAND",
-                "command": "!money",
-                "subsOnly": false,
+                "type": "CHANNEL_POINTS_REWARD",
+                "rewardTitle": "Donate Money",
                 "limits": {
-                    "min": -500,
+                    "min": 0,
                     "max": 1000,
-                    "default": 100
+                    "default": 1000
                 }
             },
             "action": "ADD_MONEY"
         },
         {
             "trigger": {
-                "type": "COMMAND",
-                "command": "!steal",
-                "subsOnly": false,
+                "type": "CHANNEL_POINTS_REWARD",
+                "rewardTitle": "Steal Money",
                 "limits": {
-                    "default": 100
+                    "min": 0,
+                    "max": 1000,
+                    "default": 1000
                 }
             },
             "action": "REMOVE_MONEY"
         },
         {
             "trigger": {
-                "type": "COMMAND",
-                "command": "!puke",
-                "subsOnly": false
+                "type": "CHANNEL_POINTS_REWARD",
+                "rewardTitle": "Puke"
             },
             "action": "NAUSEATE_PEEPS"
         },
         {
             "trigger": {
-                "type": "COMMAND",
-                "command": "!heal",
-                "subsOnly": false
+                "type": "CHANNEL_POINTS_REWARD",
+                "rewardTitle": "Dramamine"
             },
             "action": "HEAL_PEEPS"
         },
         {
             "trigger": {
-                "type": "COMMAND",
-                "command": "!robinhood",
-                "subsOnly": false
+                "type": "CHANNEL_POINTS_REWARD",
+                "rewardTitle": "Fill Bladders"
+            },
+            "action": "FILL_BLADDERS"
+        },
+        {
+            "trigger": {
+                "type": "CHANNEL_POINTS_REWARD",
+                "rewardTitle": "Empty Bladders"
+            },
+            "action": "EMPTY_BLADDERS"
+        },
+        {
+            "trigger": {
+                "type": "CHANNEL_POINTS_REWARD",
+                "rewardTitle": "Robin Hood"
             },
             "action": "GIVE_PEEPS_MONEY"
         },
         {
             "trigger": {
-                "type": "COMMAND",
-                "command": "!surge",
-                "subsOnly": false
+                "type": "CHANNEL_POINTS_REWARD",
+                "rewardTitle": "Mow"
+            },
+            "action": "MOW_GRASS"
+        },
+        {
+            "trigger": {
+                "type": "CHANNEL_POINTS_REWARD",
+                "rewardTitle": "Repairman"
+            },
+            "action": "FIX_VANDALISM"
+        },
+        {
+            "trigger": {
+                "type": "CHANNEL_POINTS_REWARD",
+                "rewardTitle": "Roomba"
+            },
+            "action": "REMOVE_LITTER"
+        },
+        {
+            "trigger": {
+                "type": "CHANNEL_POINTS_REWARD",
+                "rewardTitle": "Weatherman",
+                "limits": {
+                    "min": 0,
+                    "max": 5,
+                    "default": 4
+                }
+            },
+            "action": "FORCE_WEATHER"
+        },
+        {
+            "trigger": {
+                "type": "CHANNEL_POINTS_REWARD",
+                "rewardTitle": "End Game"
             },
             "action": "REMOVE_ALL_PEEPS"
         },
         {
             "trigger": {
-                "type": "COMMAND",
-                "command": "!ducks",
-                "subsOnly": false,
+                "type": "CHANNEL_POINTS_REWARD",
+                "rewardTitle": "Duck Migration",
                 "limits": {
-                    "min": 1,
-                    "max": 30,
-                    "default": 15
+                    "default": 30
                 }
             },
             "action": "SPAWN_DUCKS"
         },
         {
             "trigger": {
-                "type": "COMMAND",
-                "command": "!balloons",
-                "subsOnly": false
+                "type": "CHANNEL_POINTS_REWARD",
+                "rewardTitle": "Balloons"
             },
             "action": "GIVE_PEEPS_BALLOONS"
         },
         {
             "trigger": {
-                "type": "COMMAND",
-                "command": "!umbrellas",
-                "subsOnly": false
+                "type": "CHANNEL_POINTS_REWARD",
+                "rewardTitle": "Umbrellas"
             },
             "action": "GIVE_PEEPS_UMBRELLAS"
         },
         {
             "trigger": {
-                "type": "COMMAND",
-                "command": "!maps",
-                "subsOnly": false
+                "type": "CHANNEL_POINTS_REWARD",
+                "rewardTitle": "Maps"
             },
             "action": "GIVE_PEEPS_PARK_MAPS"
         },
         {
             "trigger": {
-                "type": "COMMAND",
-                "command": "!setcolor",
-                "subsOnly": false
+                "type": "CHANNEL_POINTS_REWARD",
+                "rewardTitle": "Choose Ride Color"
             },
             "action": "REPLACE_RIDE_COLOR"
-        },
-        {
-            "trigger": {
-                "type": "COMMAND",
-                "command": "!setpinkto",
-                "subsOnly": false
-            },
-            "action": "REPLACE_RIDE_COLOR",
-            "actionParams": {
-                "recolorableColor": "rainbow"
-            }
         },
         {
             "trigger": {
@@ -154,18 +183,21 @@
         {
             "trigger": {
                 "type": "CHANNEL_POINTS_REWARD",
-                "rewardTitle": "Replace Color"
+                "rewardTitle": "Name a Guest"
             },
-            "action": "REPLACE_RIDE_COLOR",
-            "actionParams": {
-                "recolorableColor": "dark olive green"
-            }
+            "action": "SPAWN_PEEP"
         },
         {
             "trigger": {
-                "type": "COMMAND",
-                "command": "!rainbow",
-                "subsOnly": false
+                "type": "CHANNEL_POINTS_REWARD",
+                "rewardTitle": "Name a Staff Member"
+            },
+            "action": "SET_STAFF_NAME"
+        },
+        {
+            "trigger": {
+                "type": "CHANNEL_POINTS_REWARD",
+                "rewardTitle": "Rainbow"
             },
             "action": "REPLACE_RIDE_COLOR",
             "actionParams": {

@@ -9,6 +9,7 @@ const appConfig = {
 }
 
 function loadConfig(file) {
+    console.log("Loading config: " + file);
     if (!fs.existsSync(file)) {
         throw new Error("Failed to locate \"" + file + "\". Please make sure that the config file is present.");
     }
@@ -16,7 +17,14 @@ function loadConfig(file) {
     return JSON.parse(str);
 }
 
-const config = loadConfig("config.json");
+let configPath = "config.json";
+if (process.argv) {
+    if (process.argv[2]) {
+        configPath = process.argv[2];
+    }
+}
+
+const config = loadConfig(configPath);
 config.appConfig = appConfig;
 
 let app = new App(config);

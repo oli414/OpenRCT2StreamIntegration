@@ -27,6 +27,14 @@ class ActionManager {
         this.registerAction(DefaultAction, "REMOVE_ALL_PEEPS");
         this.registerAction(DefaultAction, "NAUSEATE_PEEPS");
         this.registerAction(DefaultAction, "HEAL_PEEPS");
+        this.registerAction(DefaultAction, "SET_STAFF_NAME");
+        this.registerAction(DefaultAction, "FILL_BLADDERS");
+        this.registerAction(DefaultAction, "EMPTY_BLADDERS");
+        this.registerAction(DefaultAction, "MOW_GRASS");
+        this.registerAction(DefaultAction, "FIX_VANDALISM");
+        this.registerAction(DefaultAction, "REMOVE_LITTER");
+        this.registerAction(DefaultAction, "FORCE_WEATHER");
+        this.registerAction(DefaultAction, "SET_PARK_NAME");
 
         this.tcpServer = new Net.Server();
         this.activeSocket = null;

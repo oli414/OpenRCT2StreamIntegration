@@ -10,6 +10,8 @@ class TwitchIRC {
 
         this.twitchCom = twitchCom;
 
+        this.usersInChat = [];
+
         this.client = new tmi.client({
             connection: {
                 reconnect: true
@@ -26,6 +28,15 @@ class TwitchIRC {
         this.client.on('message', (target, context, msg, self) => {
             if (self) return;
 
+            if (that.usersInChat.indexOf(context["display-name"]) == -1) {
+                that.usersInChat.push(context["display-name"]);
+                that.twitchCom.app.triggerManager.trigger("VIEWER_JOINS", {
+                    message: "",
+                    username: context["display-name"],
+                    subscriber: false
+                });
+            }
+
             that.twitchCom.app.triggerManager.trigger("COMMAND", {
                 message: msg,
                 username: context["display-name"],
@@ -33,6 +44,7 @@ class TwitchIRC {
             });
         });
 
+        //*
         this.client.on("join", (channel, username, self) => {
             that.twitchCom.apiGetRequest("/helix/users?login=" + username).then((data) => {
                 that.twitchCom.app.triggerManager.trigger("VIEWER_JOINS", {
@@ -41,7 +53,7 @@ class TwitchIRC {
                     subscriber: false
                 });
             });
-        });
+        });//*/
 
         this.client.on('connected', (addr, port) => {
             console.log("Connected to Twitch chat");

@@ -35,6 +35,7 @@ class ActionManager {
         this.registerAction(DefaultAction, "REMOVE_LITTER");
         this.registerAction(DefaultAction, "FORCE_WEATHER");
         this.registerAction(DefaultAction, "SET_PARK_NAME");
+        this.registerAction(DefaultAction, "FIX_RIDES");
 
         this.tcpServer = new Net.Server();
         this.activeSocket = null;

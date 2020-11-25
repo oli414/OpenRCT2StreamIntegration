@@ -126,6 +126,14 @@
         {
             "trigger": {
                 "type": "COMMAND",
+                "command": "!fixrides",
+                "subsOnly": false
+            },
+            "action": "FIX_RIDES"
+        },
+        {
+            "trigger": {
+                "type": "COMMAND",
                 "command": "!clean",
                 "subsOnly": false
             },
@@ -163,6 +171,14 @@
             "actionParams": {
                 "message": 0
             }
+        },
+        {
+            "trigger": {
+                "type": "COMMAND",
+                "command": "!setstaffname",
+                "subsOnly": false
+            },
+            "action": "SET_STAFF_NAME"
         },
         {
             "trigger": {

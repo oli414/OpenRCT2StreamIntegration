@@ -51,8 +51,11 @@ const all_things = [
     "EMPTY_BLADDERS"
 ];
 
+const SUNNY = "0";
+const STORM = "5";
+
 function getRandomInt(max) {
-  return Math.floor(Math.random() * (max + 0.9));
+  return Math.floor(Math.random() * max);
 }
 
 class RandomAction extends Action {
@@ -67,17 +70,17 @@ class RandomAction extends Action {
         if(idType === "FORCE_WEATHER") {
             switch (this.identifier) {
                 case "RANDOM_BAD_THING":
-                    newMessage = "5";
+                    newMessage = STORM;
                     break;
                 case "RANDOM_GOOD_THING":
-                    newMessage = "0";
+                    newMessage = SUNNY;
                     break;
                 case "RANDOM_THING":
-                    newMessage = getRandomInt(6) + "";
+                    newMessage = getRandomInt(6) + "";//Let's get a random weather effect
                     break;
             
                 default:
-                    newMessage = getRandomInt(6) + "";
+                    newMessage = getRandomInt(6) + "";//Let's get a random weather effect
                     break;
             }
         }

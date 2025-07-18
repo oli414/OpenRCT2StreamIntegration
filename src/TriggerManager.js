@@ -96,4 +96,4 @@ class TriggerManager {
     }
 }
 
-module.exports = TriggerManager;
+export default TriggerManager;

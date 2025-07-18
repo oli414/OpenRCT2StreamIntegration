@@ -1,7 +1,6 @@
-const fs = require("fs");
+import fs from "fs";
 
-const App = require("./App");
-
+import App from "./App.js";
 const appConfig = {
     appClientID: "xijp8ir7bscb5n7sfsuinlzw6c0k86",
     redirectUri: "http://localhost",

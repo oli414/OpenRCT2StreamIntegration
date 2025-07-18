@@ -1,4 +1,4 @@
-const Action = require("./Action");
+import Action from "./Action.js";
 
 class ReplaceRideColor extends Action {
     constructor(actionManager) {
@@ -19,4 +19,4 @@ class ReplaceRideColor extends Action {
     }
 }
 
-module.exports = ReplaceRideColor;
+export default ReplaceRideColor;

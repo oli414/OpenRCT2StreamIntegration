@@ -2,6 +2,7 @@
   "name": "openrct2streamintegration",
   "version": "1.0.0",
   "description": "",
+  "type": "module",
   "main": "src/index.js",
   "scripts": {
     "start": "node src/index.js",
@@ -18,9 +19,12 @@
   },
   "homepage": "https://github.com/oli414/OpenRCT2StreamIntegration#readme",
   "dependencies": {
-    "express": "^4.17.1",
-    "opn": "^6.0.0",
-    "tmi.js": "^1.5.0",
-    "websocket": "^1.0.32"
+    "@twurple/auth": "^7.3.0",
+    "@twurple/chat": "^7.3.0",
+    "@twurple/eventsub-ws": "^7.3.0",
+    "express": "^5.1.0",
+    "open": "^10.2.0",
+    "tmi.js": "^1.8.5",
+    "websocket": "^1.0.35"
   }
 }

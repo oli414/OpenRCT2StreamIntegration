@@ -1,4 +1,4 @@
-const Action = require("./Action");
+import Action from "./Action.js";
 
 class SpawnPeep extends Action {
     constructor(actionManager) {
@@ -15,4 +15,4 @@ class SpawnPeep extends Action {
     }
 }
 
-module.exports = SpawnPeep;
+export default SpawnPeep;

@@ -224,6 +224,20 @@
                 "rewardTitle": "Random Chaos"
             },
             "action": "RANDOM_THING"
+        },
+        {
+            "trigger": {
+                "type": "CHANNEL_POINTS_REWARD",
+                "rewardTitle": "Remove All Items"
+            },
+            "action": "REMOVE_ALL_ITEMS_FROM_PEEPS"
+        },
+        {
+            "trigger": {
+                "type": "CHANNEL_POINTS_REWARD",
+                "rewardTitle": "Remove Item"
+            },
+            "action": "REMOVE_ITEM_FROM_PEEPS"
         }
     ]
 }

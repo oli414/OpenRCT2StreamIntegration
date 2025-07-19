@@ -4,6 +4,7 @@ import ForceWeather from "./actions/ForceWeather.js";
 import NameRide from "./actions/NameRide.js";
 import SpawnPeep from "./actions/SpawnPeep.js";
 import ReplaceRideColor from "./actions/ReplaceRideColor.js";
+import RemoveItemFromPeeps from "./actions/RemoveItemFromPeeps.js";
 
 import { Server } from "node:net";
 const port = 8081;
@@ -18,6 +19,7 @@ class ActionManager {
         this.registerAction(SpawnPeep);
         this.registerAction(ReplaceRideColor);
         this.registerAction(ForceWeather);
+        this.registerAction(RemoveItemFromPeeps);
         this.registerAction(DefaultAction, "EXPLODE_PEEPS");
         this.registerAction(DefaultAction, "GIVE_PEEPS_PARK_MAPS");
         this.registerAction(DefaultAction, "GIVE_PEEPS_BALLOONS");
@@ -38,6 +40,7 @@ class ActionManager {
         this.registerAction(DefaultAction, "REMOVE_LITTER");
         this.registerAction(DefaultAction, "SET_PARK_NAME");
         this.registerAction(DefaultAction, "FIX_RIDES");
+        this.registerAction(DefaultAction, "REMOVE_ALL_ITEMS_FROM_PEEPS");
         this.registerAction(RandomAction, "RANDOM_BAD_THING");
         this.registerAction(RandomAction, "RANDOM_GOOD_THING");
         this.registerAction(RandomAction, "RANDOM_THING");

@@ -18,7 +18,9 @@ const good_things = [
     "REMOVE_LITTER",
     "FIX_RIDES",
     "EMPTY_BLADDERS",
-    "FORCE_WEATHER"
+    "FORCE_WEATHER",
+    "REMOVE_ITEM_FROM_PEEPS",
+    "REMOVE_ALL_ITEMS_FROM_PEEPS"
 ];
 
 const neutral_things = [
@@ -48,7 +50,16 @@ const all_things = [
     "GIVE_PEEPS_UMBRELLAS",
     "SPAWN_DUCKS",
     "REMOVE_ALL_PEEPS",
-    "EMPTY_BLADDERS"
+    "EMPTY_BLADDERS",
+    "REMOVE_ITEM_FROM_PEEPS",
+    "REMOVE_ALL_ITEMS_FROM_PEEPS"
+];
+
+const items_to_remove = [
+    "balloon",
+    "hat",
+    "umbrella",
+    "map"
 ];
 
 const SUNNY = "0";
@@ -83,6 +94,8 @@ class RandomAction extends Action {
                     newMessage = getRandomInt(6) + "";//Let's get a random weather effect
                     break;
             }
+        }else if(idType === "REMOVE_ITEM_FROM_PEEPS") {//Let's pick a random item to remove from all our peeps
+            newMessage = items_to_remove[getRandomInt(items_to_remove.length)];
         }
         this.actionManager.send({
             type: idType,

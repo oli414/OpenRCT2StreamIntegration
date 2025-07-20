@@ -41,6 +41,9 @@ class ActionManager {
         this.registerAction(DefaultAction, "SET_PARK_NAME");
         this.registerAction(DefaultAction, "FIX_RIDES");
         this.registerAction(DefaultAction, "REMOVE_ALL_ITEMS_FROM_PEEPS");
+        this.registerAction(DefaultAction, "RENEW_RIDES");
+        this.registerAction(DefaultAction, "WATER_PLANTS");
+        this.registerAction(DefaultAction, "CLEAR_LOAN");
         this.registerAction(RandomAction, "RANDOM_BAD_THING");
         this.registerAction(RandomAction, "RANDOM_GOOD_THING");
         this.registerAction(RandomAction, "RANDOM_THING");

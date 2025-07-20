@@ -20,7 +20,8 @@ const good_things = [
     "EMPTY_BLADDERS",
     "FORCE_WEATHER",
     "REMOVE_ITEM_FROM_PEEPS",
-    "REMOVE_ALL_ITEMS_FROM_PEEPS"
+    "REMOVE_ALL_ITEMS_FROM_PEEPS",
+    "WATER_PLANTS"
 ];
 
 const neutral_things = [
@@ -52,7 +53,10 @@ const all_things = [
     "REMOVE_ALL_PEEPS",
     "EMPTY_BLADDERS",
     "REMOVE_ITEM_FROM_PEEPS",
-    "REMOVE_ALL_ITEMS_FROM_PEEPS"
+    "REMOVE_ALL_ITEMS_FROM_PEEPS",
+    "RENEW_RIDES",
+    "CLEAR_LOAN",
+    "WATER_PLANTS"
 ];
 
 const items_to_remove = [

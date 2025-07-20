@@ -238,6 +238,27 @@
                 "rewardTitle": "Remove Item"
             },
             "action": "REMOVE_ITEM_FROM_PEEPS"
+        },
+        {
+            "trigger": {
+                "type": "CHANNEL_POINTS_REWARD",
+                "rewardTitle": "Refurbish Rides"
+            },
+            "action": "RENEW_RIDES"
+        },
+        {
+            "trigger": {
+                "type": "CHANNEL_POINTS_REWARD",
+                "rewardTitle": "Plant Hydration"
+            },
+            "action": "WATER_PLANTS"
+        },
+        {
+            "trigger": {
+                "type": "CHANNEL_POINTS_REWARD",
+                "rewardTitle": "Loan Forgiveness"
+            },
+            "action": "CLEAR_LOAN"
         }
     ]
 }

@@ -1,4 +1,4 @@
-const Action = require("./Action");
+import Action from "./Action.js";
 
 class NameRide extends Action {
     constructor(actionManager) {
@@ -15,4 +15,4 @@ class NameRide extends Action {
     }
 }
 
-module.exports = NameRide;
+export default NameRide;

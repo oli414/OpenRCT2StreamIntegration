@@ -1,4 +1,4 @@
-const tmi = require('tmi.js');
+import tmi from 'tmi.js';
 
 class TwitchIRC {
     constructor(config, authToken, channelName, twitchCom) {
@@ -73,4 +73,4 @@ class TwitchIRC {
     }
 }
 
-module.exports = TwitchIRC;
+export default TwitchIRC;

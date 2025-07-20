@@ -1,11 +1,11 @@
-const https = require('https');
-const opn = require('opn');
-const express = require('express');
-const fs = require('fs');
-const path = require('path');
+import { request } from 'node:https';
+const opn = import('open');
+import express from "express";
+import fs from "fs";
+const path = import('path');
 
-const PubSub = require("./PubSub");
-const TwitchIRC = require("./TwitchIRC");
+import PubSub from "./PubSub.js";
+import TwitchIRC from "./TwitchIRC.js";
 
 class TwitchCom {
     constructor(config, app) {
@@ -62,7 +62,7 @@ class TwitchCom {
                     "Authorization": "OAuth " + token
                 }
             };
-            const req = https.request(options, res => {
+            const req = request(options, res => {
                 if (res.statusCode == 401) {
                     // Invalid token
                     that.storedAccessToken = "";
@@ -107,7 +107,7 @@ class TwitchCom {
                 "chat:read"//,
                 //"channel:moderate"
             ]
-            opn("https://id.twitch.tv/oauth2/authorize?client_id=" + encodeURI(this.appClientID) + "&redirect_uri=" + encodeURI(this.redirectUri + ":" + this.webServerPort) + "&response_type=token&scope=" + encodeURI(scope.join(' ')));
+            opn.default("https://id.twitch.tv/oauth2/authorize?client_id=" + encodeURI(this.appClientID) + "&redirect_uri=" + encodeURI(this.redirectUri + ":" + this.webServerPort) + "&response_type=token&scope=" + encodeURI(scope.join(' ')));
         });
     }
 
@@ -139,7 +139,7 @@ class TwitchCom {
                     "Client-ID": this.appClientID
                 }
             };
-            const req = https.request(options, res => {
+            const req = request(options, res => {
                 if (res.statusCode == 401) {
                     // Invalid token
                     console.log("Failed to access API. Restart the Relay");
@@ -237,9 +237,13 @@ class TwitchCom {
             console.log("Completed Twitch authentication");
             this.app.addReadyFlag(1);
 
+            console.log("Creating PubSub");
             let pubSub = new PubSub(this.config, this.storedAccessToken, this.channelID, this);
+
+            console.log("Connecting PubSub");
             pubSub.connect();
 
+            console.log("Creating Chat");
             let ircCom = new TwitchIRC(this.config, this.storedAccessToken, this.channelName, this);
             ircCom.connect();
 
@@ -249,10 +253,14 @@ class TwitchCom {
                 console.log(data);
             });*/
 
-        }).catch(() => {
+        }).catch((error) => {
             console.error("Failed Twitch authentication");
+            console.error("An error occurred:", error); // Log the entire error object
+            console.error("Error name:", error.name); // Log the type of error (e.g., ReferenceError)
+            console.error("Error message:", error.message);
         });
     }
 }
 
-module.exports = TwitchCom;
+export default TwitchCom;
+

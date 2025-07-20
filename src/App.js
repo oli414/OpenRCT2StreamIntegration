@@ -1,6 +1,6 @@
-const TwitchCom = require("./TwitchCom");
-const ActionManager = require("./ActionManager");
-const TriggerManager = require("./TriggerManager");
+import TwitchCom from "./TwitchCom.js";
+import ActionManager from "./ActionManager.js";
+import TriggerManager from "./TriggerManager.js";
 
 class App {
     constructor(config) {
@@ -37,4 +37,4 @@ class App {
     }
 }
 
-module.exports = App;
+export default App;

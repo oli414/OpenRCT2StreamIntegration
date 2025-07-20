@@ -203,6 +203,27 @@
             "actionParams": {
                 "message": "rainbow to rainbow"
             }
+        },
+        {
+            "trigger": {
+                "type": "CHANNEL_POINTS_REWARD",
+                "rewardTitle": "Random Good Reward"
+            },
+            "action": "RANDOM_GOOD_THING"
+        },
+        {
+            "trigger": {
+                "type": "CHANNEL_POINTS_REWARD",
+                "rewardTitle": "Random Bad Reward"
+            },
+            "action": "RANDOM_BAD_THING"
+        },
+        {
+            "trigger": {
+                "type": "CHANNEL_POINTS_REWARD",
+                "rewardTitle": "Random Chaos"
+            },
+            "action": "RANDOM_THING"
         }
     ]
 }
